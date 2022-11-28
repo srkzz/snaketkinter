@@ -37,18 +37,11 @@ class Comida:
         canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tags="comida")
 
 
-def create_button(self):
-    button = tk.Button(self, text='New Game', command=lambda: self.new_game())
-    button.place(relx=0.1, rely=0.10, anchor="center")
+##def create_button(self):
+  ##  button = tk.Button(self, text='New Game', command=lambda: self.new_game())
+    ## button.place(relx=0.1, rely=0.10, anchor="center")
 
  # Function for game restart
- def new_game(self):
-    self.make_GUI()
-    self.start_game()
-
-def jogar_again():
-    Comida()
-    Snake()
 
 
 def prox_curva(snake, comida):
