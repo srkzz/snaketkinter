@@ -37,15 +37,7 @@ class Comida:
         canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tags="comida")
 
 
-##def create_button(self):
-  ##  button = tk.Button(self, text='New Game', command=lambda: self.new_game())
-    ## button.place(relx=0.1, rely=0.10, anchor="center")
-
- # Function for game restart
-
-
 def prox_curva(snake, comida):
-
     x, y = snake.coordinates[0]
 
     if direction == "up":
@@ -107,7 +99,6 @@ def mudar_dir(nova_dir):
 
 
 def ver_col(snake):
-
     x, y = snake.coordinates[0]
 
     if x < 0 or x >= GAME_WIDTH:
@@ -121,11 +112,24 @@ def ver_col(snake):
 
     return False
 
-def game_over():
-
+def replay():
+    global score
+    score = 0
+    label.config(text="Resultado:{}".format(score))
+    btn.destroy()
     canvas.delete(ALL)
-    canvas.create_text(canvas.winfo_width()/2,canvas.winfo_height()/2, font=('consolas', 70), text="GAME OVER",
+    snake = Snake()
+    comida = Comida()
+    prox_curva(snake, comida)
+
+
+def game_over():
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, font=('consolas', 70), text="GAME OVER",
                        fill="red", tags="GameOver")
+    global btn
+    btn = Button(window, text='PLAY AGAIN', width=40, height=5, bd='10', command=replay)
+    btn.place(x=65, y=100)
 
 
 window = Tk()
@@ -135,7 +139,6 @@ score = 0
 direction = 'down'
 label = Label(window, text="Resultado:{}".format(score), font=('consolas', 40))
 label.pack()
-
 canvas = Canvas(window, bg=BACKGROUND_COLOR, height=GAME_HEIGHT, width=GAME_WIDTH)
 canvas.pack()
 
